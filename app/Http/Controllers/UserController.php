@@ -32,7 +32,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         User::where("id", $id)->update(['name' => $request['name'], 'email' => $request['email'], 'password' => Hash::make($request['password'])]);
-        return $this->index();
+        return redirect()->route('index');
     }
 
     public function index()
@@ -45,6 +45,6 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        return $this->index();
+        return redirect()->route('index');
     }
 }
